@@ -1,0 +1,2 @@
+.jstree-default .jstree-open > ins { background-image: url("/images/folderOpened.png"); background-position: 0 0 !important; background-size: cover; }
+.jstree-default .jstree-closed > ins { background-image: url("/images/folderClosed.png"); background-position: 0 0 !important; background-size: cover; }
