@@ -139,19 +139,13 @@ myUtils.getConfig(function (err, config) {
         var client;
         if (newDefault.sentinel_host) {
           client = new Redis({showFriendlyErrorStack: true , sentinels: [{ host: newDefault.sentinel_host, port: newDefault.sentinel_port}],name: 'mymaster' });
+        } else if (newDefault.password) {
+          client = new Redis(newDefault.port, newDefault.host, { password: newDefault.password });
         } else {
           client = new Redis(newDefault.port, newDefault.host);
         }
         client.label = newDefault.label;
         redisConnections.push(client);
-        if (args['redis-password']) {
-          redisConnections.getLast().auth(args['redis-password'], function (err) {
-            if (err) {
-              console.log(err);
-              process.exit();
-            }
-          });
-        }
         config.default_connections.push(newDefault);
         myUtils.saveConfig(config, function (err) {
           if (err) {
@@ -176,16 +170,14 @@ myUtils.getConfig(function (err, config) {
 function startDefaultConnections (connections, callback) {
   if (connections) {
     connections.forEach(function (connection) {
-      var client = new Redis(connection.port, connection.host);
+      var client;
+      if (connection.password) {
+        client = new Redis(connection.port, connection.host, { password: connection.password });
+      } else {
+        client = new Redis(connection.port, connection.host);
+      }
       client.label = connection.label;
       redisConnections.push(client);
-      if (connection.password) {
-        redisConnections.getLast().auth(connection.password, function (err) {
-          if (err) {
-            return callback(err);
-          }
-        });
-      }
       setUpConnection(redisConnections.getLast(), connection.dbIndex);
     });
   }
