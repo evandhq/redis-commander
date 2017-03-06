@@ -4,12 +4,12 @@
     <h3>Edit Set Member</h3>
   </div>
   <div class="modal-body">
-    <form id="editSetMemberForm" action="apiv1/editSetMember/" method="POST" class="form-vertical">  
+    <form id="editSetMemberForm" action="apiv1/editSetMember/" method="POST" class="form-vertical">
       <input id="setKey" name="setKey" hidden="true" />
       <h3>Member</h3>
       <input id="setOldMember" name="setOldMember" type="text" readonly/>
       <h3>Updated Member</h3>
-      <textarea id="setMember" name="setMember" style="width: 500px; height: 150px;"></textarea>
+      <textarea id="setMember" name="setMember" style="width: 90%;"></textarea>
       <input id="setConnectionId" name="setConnectionId" hidden/>
       <br>
     </form>
@@ -20,4 +20,3 @@
     <button id="editSetMemberButton" class="btn btn-primary" data-loading-text="<i class='icon-refresh'></i> Saving..." onclick="$('#editSetMemberForm').submit()">Save</button>
   </div>
 </div>
-
