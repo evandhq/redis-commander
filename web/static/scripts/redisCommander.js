@@ -2,6 +2,8 @@
 var foldingCharacter = ":";
 
 var CmdParser = require('cmdparser');
+$.jstree.defaults.core.animation = 0
+
 function loadTree () {
   $.get('apiv1/connection', function (isConnected) {
     if (isConnected) {
@@ -14,7 +16,7 @@ function loadTree () {
       });
       getServerInfo(function (data) {
         var json_dataData = [];
-	
+
         data.forEach(function (instance, index) {
           var label = instance.label;
           var host = instance.host;
