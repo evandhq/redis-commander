@@ -104,7 +104,7 @@ body {
 #commandLineContainer input {
   margin: 0;
   box-shadow: none;
-  width: 900px;
+  width: 90%;
 }
 
 #commandLineContainer label {
