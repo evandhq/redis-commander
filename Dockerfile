@@ -1,5 +1,8 @@
-FROM node
+FROM node:alpine
 
+RUN apk update && \
+    apk add tzdata curl bash ca-certificates rsync git
+    
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
 
