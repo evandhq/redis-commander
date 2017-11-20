@@ -8,7 +8,10 @@ WORKDIR /usr/src
 
 RUN git clone https://github.com/joeferner/redis-commander.git \
 	&& cd redis-commander \
-	&& npm install -g redis-commander
+	&& npm install -g redis-commander &&
+	touch /.redis-commander && \
+    	chgrp -R 0 /.redis-commander && \
+    	chmod -R g=u /.redis-commander
 
 ENTRYPOINT [ "redis-commander" ]
 
